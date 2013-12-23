@@ -41,4 +41,9 @@ public class ServersPool implements IServersPool {
         }
         return iterator.next();
     }
+
+    @Override
+    public int size() {
+        return servers.size();
+    }
 }
