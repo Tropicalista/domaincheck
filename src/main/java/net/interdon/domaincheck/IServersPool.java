@@ -8,6 +8,5 @@ package net.interdon.domaincheck;
 import java.util.List;
 
 public interface IServersPool {
-    List<String> serversList();
     String nextServer();
 }
