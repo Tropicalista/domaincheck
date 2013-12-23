@@ -8,21 +8,21 @@ package net.interdon.domaincheck;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.ListIterator;
 
 public class ServersPool implements IServersPool {
-    private LinkedList<String> servers;
+    private ArrayList<String> servers;
     private ListIterator<String> iterator;
     public ServersPool(String[] servers) {
-        this.servers = new LinkedList<String>(Arrays.asList(servers));
+        this.servers = new ArrayList<>(Arrays.asList(servers));
         this.iterator = this.servers.listIterator();
     }
 
     public ServersPool(String serversFilePath) throws IOException {
         String line;
-        servers = new LinkedList<String>();
+        servers = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(serversFilePath));
         while((line = reader.readLine()) != null) {
             servers.add(line);
