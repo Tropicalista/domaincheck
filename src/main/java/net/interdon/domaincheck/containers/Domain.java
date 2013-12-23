@@ -46,4 +46,8 @@ public class Domain {
     public void setWhoisResponce(String whoisResponce) {
         this.whoisResponce = whoisResponce;
     }
+
+    public String getDomainName() {
+        return domainName;
+    }
 }
