@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface IServersPool {
     String nextServer();
+    int size();
 }
