@@ -5,6 +5,9 @@
 
 package net.interdon.domaincheck;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -17,7 +20,15 @@ public class ServersPool implements IServersPool {
         this.iterator = this.servers.listIterator();
     }
 
-    public ServersPool(String serversFilePath) {
+    public ServersPool(String serversFilePath) throws IOException {
+        String line;
+        servers = new LinkedList<String>();
+        BufferedReader reader = new BufferedReader(new FileReader(serversFilePath));
+        while((line = reader.readLine()) != null) {
+            servers.add(line);
+        }
+        reader.close();
+        this.iterator = servers.listIterator();
     }
 
     @Override
