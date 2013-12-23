@@ -5,8 +5,14 @@
 
 package net.interdon.domaincheck;
 
-public class DomainCheck {
-    public static void main(String[] args) {
+import java.util.List;
 
+public class DomainCheck {
+    private IServersPool servers;
+    private List domains;
+
+    public DomainCheck(IServersPool servers, List domains) {
+        this.servers = servers;
+        this.domains = domains;
     }
 }
