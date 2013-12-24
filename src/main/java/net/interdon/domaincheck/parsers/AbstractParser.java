@@ -7,21 +7,26 @@ package net.interdon.domaincheck.parsers;
 
 import net.interdon.domaincheck.containers.Domain;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 public abstract class AbstractParser {
     protected Domain domain;
     protected String dateCreated;
     protected String dateLastModifyed;
     protected String expirationDate;
-    protected String responce;
-    public abstract Domain parse();
-
-    protected AbstractParser(Domain domain) {
-        this.domain = domain;
-        this.responce = domain.getWhoisResponce();
+    protected List<String> responce;
+    public AbstractParser() {
+        responce = new LinkedList<>();
     }
+    public abstract Domain parse(Domain domain);
 
-    public void stripComments() {
-        StringBuilder sb = new StringBuilder();
+    protected void splitResponce() {
+        if(domain.getWhoisResponce().isEmpty()) {
+            return;
+        }
+        responce.addAll(Arrays.asList(domain.getWhoisResponce().split("\n")));
     }
 
     public void updateDomain() {

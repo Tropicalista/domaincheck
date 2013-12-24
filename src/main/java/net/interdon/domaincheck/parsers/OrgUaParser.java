@@ -8,13 +8,12 @@ package net.interdon.domaincheck.parsers;
 import net.interdon.domaincheck.containers.Domain;
 
 public class OrgUaParser extends AbstractParser {
-
-    public OrgUaParser(Domain domain) {
-        this.domain = domain;
+    public OrgUaParser() {
+        super();
     }
 
     @Override
-    public Domain parse() {
+    public Domain parse(Domain domain) {
         return domain;
     }
 }
