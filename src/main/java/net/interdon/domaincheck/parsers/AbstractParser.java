@@ -10,6 +10,7 @@ import net.interdon.domaincheck.containers.Domain;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public abstract class AbstractParser {
     protected Domain domain;
@@ -17,7 +18,13 @@ public abstract class AbstractParser {
     protected String dateLastModifyed;
     protected String expirationDate;
     protected List<String> responce;
-    public AbstractParser() {
+    protected Pattern expirationPattern;
+    protected Pattern modifyedPattern;
+    protected Pattern createdPattern;
+    public AbstractParser(String expirationRegexp, String modifyedRegexp, String createdRegexp) {
+        expirationPattern = Pattern.compile(expirationRegexp);
+        modifyedPattern = Pattern.compile(modifyedRegexp);
+        createdPattern = Pattern.compile(createdRegexp);
         responce = new LinkedList<>();
     }
     public abstract Domain parse(Domain domain);

@@ -8,8 +8,8 @@ package net.interdon.domaincheck.parsers;
 import net.interdon.domaincheck.containers.Domain;
 
 public class OrgUaParser extends AbstractParser {
-    public OrgUaParser() {
-        super();
+    public OrgUaParser(String expirationRegexp, String modifyedRegexp, String createdRegexp) {
+        super(expirationRegexp, modifyedRegexp, createdRegexp);
     }
 
     @Override
