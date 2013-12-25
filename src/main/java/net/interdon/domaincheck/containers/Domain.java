@@ -15,6 +15,10 @@ public class Domain {
         this.domainName = domainName;
     }
 
+    public String getTld() {
+        return domainName.split(".", 1)[1];
+    }
+
     public String getDateCreated() {
         return dateCreated;
     }
