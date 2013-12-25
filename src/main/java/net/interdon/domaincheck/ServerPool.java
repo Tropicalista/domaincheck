@@ -43,7 +43,7 @@ public class ServerPool implements IServerPool {
 
     @Override
     public void delServer(String tld, String host) {
-
+        servers.remove(tld);
     }
 
     @Override
