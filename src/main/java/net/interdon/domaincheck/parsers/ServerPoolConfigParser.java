@@ -7,14 +7,12 @@ package net.interdon.domaincheck.parsers;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathException;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
@@ -56,8 +54,8 @@ public class ServerPoolConfigParser {
     }
 
     public String getServer(String tld) throws XPathExpressionException {
-        XPathExpression expr = xPathFactory.newXPath().compile(String.format("/whois-servers/%s[@%s='%s']/server/text()",
-                XML_TAG_TLD, XML_TLD_NAME_ATTRIBUTE, tld));
+        XPathExpression expr = xPathFactory.newXPath().compile(String.format("/whois-servers/%s[@%s='%s']/%s/text()",
+                XML_TAG_TLD, XML_TLD_NAME_ATTRIBUTE, tld, XML_TAG_SERVER));
         return expr.evaluate(doc);
     }
 }
