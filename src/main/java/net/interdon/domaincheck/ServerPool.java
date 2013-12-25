@@ -33,7 +33,7 @@ public class ServerPool implements IServerPool {
 
     @Override
     public boolean hasServerFor(String tld) {
-        return false;
+        return servers.containsKey(tld);
     }
 
     @Override
