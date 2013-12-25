@@ -9,29 +9,34 @@ import net.interdon.domaincheck.containers.Domain;
 import org.apache.commons.net.whois.WhoisClient;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 public class DomainCheck {
-    private IServersPool servers;
-    private List domains;
-    private int currentDomain = 0;
+    private List<Domain> domains;
     WhoisClient whoisClient;
 
-    public DomainCheck(IServersPool servers, List domains) {
-        this.servers = servers;
-        this.domains = domains;
+    public DomainCheck(String[] domainsToCheck) {
+        buildDomainsList(domainsToCheck);
         whoisClient = new WhoisClient();
     }
 
     public Domain query(Domain domain) {
         try {
-            whoisClient.connect(servers.nextServer());
+            whoisClient.connect(WhoisClient.DEFAULT_HOST);
             domain.setWhoisResponce(whoisClient.query(domain.getDomainName()));
             whoisClient.disconnect();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return domain;
+    }
+
+    private void buildDomainsList(String[] domainsToCheck) {
+        domains = new LinkedList<>();
+        for(String item: domainsToCheck) {
+            domains.add(new Domain(item));
+        }
     }
 
 }
