@@ -5,6 +5,7 @@
 
 package net.interdon.domaincheck;
 
+import net.interdon.domaincheck.exceptions.NoServersForTldException;
 import net.interdon.domaincheck.parsers.ServerPoolConfigParser;
 import org.xml.sax.SAXException;
 
@@ -23,8 +24,11 @@ public class ServerPool implements IServerPool {
     }
 
     @Override
-    public String nextServer(String tld) {
-        return null;
+    public String nextServer(String tld) throws NoServersForTldException {
+        if(!servers.containsKey(tld)) {
+            throw new NoServersForTldException(tld);
+        }
+        return servers.get(tld);
     }
 
     @Override
