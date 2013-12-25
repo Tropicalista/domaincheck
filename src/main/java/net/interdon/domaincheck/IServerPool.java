@@ -5,12 +5,14 @@
 
 package net.interdon.domaincheck;
 
+import net.interdon.domaincheck.exceptions.NoServersForTldException;
+
 import java.util.List;
 
 public interface IServerPool {
-    public String nextServer(String tld);
+    public String nextServer(String tld) throws NoServersForTldException;
     public boolean hasServerFor(String tld);
     public void addServer(String tld, String host);
-    public void delServer(String tld, String host);
+    public void delServer(String tld, String host) throws NoServersForTldException;
     public List<String> tldList();
 }
