@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<whois-servers>
+	<tld name="org.ua">
+		<server>whois.com.ua</server>
+	</tld>
+	<tld name="dn.ua">
+		<server>whois.dn.ua</server>
+	</tld>
+	<tld name="net.ua">
+		<server>whois.net.ua</server>
+	</tld>
+	<tld name="lg.ua">
+		<server>whois.lg.ua</server>
+	</tld>
+	<tld name="net">
+		<server>whois.internic.net</server>
+	</tld>
+	<tld name="com">
+		<server>whois.internic.net</server>
+	</tld>
+	<tld name="org">
+		<server>whois.publicinterestregistry.net</server>
+	</tld>
+</whois-servers>
