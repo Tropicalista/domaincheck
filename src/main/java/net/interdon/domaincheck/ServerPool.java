@@ -14,6 +14,7 @@ import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public class ServerPool implements IServerPool {
     private HashMap<String, String> servers;
@@ -47,8 +48,8 @@ public class ServerPool implements IServerPool {
     }
 
     @Override
-    public List<String> tldList() {
-        return null;
+    public Set<String> tldList() {
+        return servers.keySet();
     }
 
     private void loadServersList(String xmlFilePath) throws ParserConfigurationException, SAXException, IOException,
