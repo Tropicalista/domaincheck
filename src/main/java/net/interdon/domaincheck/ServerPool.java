@@ -38,7 +38,7 @@ public class ServerPool implements IServerPool {
 
     @Override
     public void addServer(String tld, String host) {
-
+        servers.put(tld, host);
     }
 
     @Override
