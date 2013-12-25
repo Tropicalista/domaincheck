@@ -14,6 +14,10 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathException;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +29,7 @@ public class ServerPoolConfigParser {
     private static final String XML_TLD_NAME_ATTRIBUTE = "name";
     private NodeList tldList;
     private final Document doc;
+    private final XPathFactory xPathFactory;
     public ServerPoolConfigParser(String pathToConfigXML) throws ParserConfigurationException, IOException, SAXException {
         File xmlFile = new File(pathToConfigXML);
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -32,6 +37,7 @@ public class ServerPoolConfigParser {
         doc = documentBuilder.parse(xmlFile);
         doc.getDocumentElement().normalize();
         tldList = doc.getElementsByTagName(XML_TAG_TLD);
+        xPathFactory = XPathFactory.newInstance();
     }
 
     public int tldCount() {
@@ -47,5 +53,11 @@ public class ServerPoolConfigParser {
             }
         }
         return result;
+    }
+
+    public String getServer(String tld) throws XPathExpressionException {
+        XPathExpression expr = xPathFactory.newXPath().compile(String.format("/whois-servers/%s[@%s='%s']/server/text()",
+                XML_TAG_TLD, XML_TLD_NAME_ATTRIBUTE, tld));
+        return expr.evaluate(doc);
     }
 }
