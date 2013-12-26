@@ -5,8 +5,12 @@ public class ParserFactory {
         switch (tld) {
             case "org.ua":
                 return new OrgUaParser();
-            default:
+            case "dn.ua":
                 return new OrgUaParser();
+            case "lg.ua":
+                return new OrgUaParser();
+            default:
+                return new DummyParser();
         }
     }
 }
