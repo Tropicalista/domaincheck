@@ -16,7 +16,7 @@ public class Domain {
     }
 
     public String getTld() {
-        return domainName.split(".", 1)[1];
+        return domainName.split("\\.", 2)[1];
     }
 
     public String getDateCreated() {
