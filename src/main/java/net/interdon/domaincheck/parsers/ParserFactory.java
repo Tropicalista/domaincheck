@@ -9,6 +9,8 @@ public class ParserFactory {
                 return new OrgUaParser();
             case "lg.ua":
                 return new OrgUaParser();
+            case "com.ua":
+                return new OrgUaParser();
             default:
                 return new DummyParser();
         }
