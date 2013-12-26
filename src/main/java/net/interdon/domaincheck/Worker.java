@@ -34,7 +34,7 @@ public class Worker extends Thread {
             try {
                 this.sleep(waitTime);
             } catch (InterruptedException e) {
-                this.interrupt();
+                Thread.currentThread().interrupt();
             }
         }
     }
