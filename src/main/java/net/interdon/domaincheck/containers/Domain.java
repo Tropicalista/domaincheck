@@ -6,10 +6,10 @@ package net.interdon.domaincheck.containers;
 
 public class Domain {
     private final String domainName;
-    private String dateCreated;
-    private String dateLastModifyed;
-    private String expirationDate;
-    private String whoisResponce;
+    private String dateCreated = "";
+    private String dateLastModifyed = "";
+    private String expirationDate = "";
+    private String whoisResponce = "";
 
     public Domain(String domainName) {
         this.domainName = domainName;
