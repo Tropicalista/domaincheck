@@ -52,4 +52,8 @@ public class DomainCheck {
             }
         }
     }
+
+    public List<Domain> getDomains() {
+        return domainsToCheck;
+    }
 }
