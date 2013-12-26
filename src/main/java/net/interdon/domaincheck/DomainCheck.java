@@ -42,14 +42,19 @@ public class DomainCheck {
         ParserFactory factory = new ParserFactory();
         HashMap<String, IDomainParser> parserPool = new HashMap<>();
         Domain tmp;
-        while (!worker.isInterrupted()) {
-            if(!parsingQueue.isEmpty()) {
-                tmp = parsingQueue.poll();
-                if(!parserPool.containsKey(tmp.getTld())) {
-                    parserPool.put(tmp.getTld(), factory.newParser(tmp.getTld()));
-                }
-                parserPool.get(tmp.getTld()).parse(tmp);
+        worker.run();
+        try {
+            worker.join();
+        } catch (InterruptedException e) {
+            worker.interrupt();
+        }
+
+        while(!parsingQueue.isEmpty()) {
+            tmp = parsingQueue.poll();
+            if(!parserPool.containsKey(tmp.getTld())) {
+                parserPool.put(tmp.getTld(), factory.newParser(tmp.getTld()));
             }
+            parserPool.get(tmp.getTld()).parse(tmp);
         }
     }
 
