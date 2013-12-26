@@ -47,7 +47,7 @@ public class Worker extends Thread {
             host = WhoisClient.DEFAULT_HOST;
         }
         try {
-            whoisClient.connect(WhoisClient.DEFAULT_HOST);
+            whoisClient.connect(host);
             domain.setWhoisResponce(whoisClient.query(domain.getDomainName()));
             whoisClient.disconnect();
         } catch (IOException e) {
