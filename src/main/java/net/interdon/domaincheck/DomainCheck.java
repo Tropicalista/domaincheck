@@ -14,11 +14,17 @@ import java.util.List;
 
 public class DomainCheck {
     private List<Domain> domains;
+    private IServerPool servers;
     WhoisClient whoisClient;
 
-    public DomainCheck(String[] domainsToCheck) {
+    public DomainCheck(String[] domainsToCheck, IServerPool servers) {
+        setServerPool(servers);
         buildDomainsList(domainsToCheck);
         whoisClient = new WhoisClient();
+    }
+
+    public void setServerPool(IServerPool servers) {
+        this.servers = servers;
     }
 
     public Domain query(Domain domain) {
