@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DomainCheck {
-    private List<Domain> domains;
+    private List<Domain> domainsToCheck;
     private IServerPool servers;
 
     public DomainCheck(String[] domainsToCheck, IServerPool servers) {
@@ -24,9 +24,9 @@ public class DomainCheck {
     }
 
     private void buildDomainsList(String[] domainsToCheck) {
-        domains = new LinkedList<>();
+        this.domainsToCheck = new LinkedList<>();
         for(String item: domainsToCheck) {
-            domains.add(new Domain(item));
+            this.domainsToCheck.add(new Domain(item));
         }
     }
 
