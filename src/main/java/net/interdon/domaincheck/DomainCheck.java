@@ -6,6 +6,7 @@
 package net.interdon.domaincheck;
 
 import net.interdon.domaincheck.containers.Domain;
+import net.interdon.domaincheck.exceptions.NoServersForTldException;
 import org.apache.commons.net.whois.WhoisClient;
 
 import java.io.IOException;
@@ -28,6 +29,12 @@ public class DomainCheck {
     }
 
     public Domain query(Domain domain) {
+        String host;
+        try {
+            host = servers.nextServer(domain.getTld());
+        } catch (NoServersForTldException e) {
+            host = WhoisClient.DEFAULT_HOST;
+        }
         try {
             whoisClient.connect(WhoisClient.DEFAULT_HOST);
             domain.setWhoisResponce(whoisClient.query(domain.getDomainName()));
