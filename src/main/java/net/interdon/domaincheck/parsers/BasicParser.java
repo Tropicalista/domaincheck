@@ -24,7 +24,7 @@ public class BasicParser implements IDomainParser {
         Matcher matcher = expirationDatePattern.matcher(sourceDomain.getWhoisResponce());
         if(matcher.find()) {
             String value = getMatchString(matcher, sourceDomain.getWhoisResponce());
-            sourceDomain.setExpirationDate(value.split(":")[1].trim());
+            sourceDomain.setExpitationDate(value.split(":")[1].trim());
         }
     }
 

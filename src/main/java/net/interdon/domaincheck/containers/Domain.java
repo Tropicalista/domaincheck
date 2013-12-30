@@ -4,11 +4,15 @@
  */
 package net.interdon.domaincheck.containers;
 
+import java.sql.Timestamp;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Domain {
     private final String domainName;
     private String dateCreated = "";
     private String dateLastModifyed = "";
-    private String expirationDate = "";
+    private long expirationDate = 0;
     private String whoisResponce = "";
 
     public Domain(String domainName) {
@@ -35,12 +39,21 @@ public class Domain {
         this.dateLastModifyed = dateLastModifyed;
     }
 
-    public String getExpirationDate() {
+    public long getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(String expirationDate) {
+    public void setExpirationDate(long expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    public void setExpitationDate(String date) { //format YYYY-MM-DD
+        Matcher matcher = Pattern.compile("^\\d{4}-{1}\\d{2}-{1}\\d{2}$").matcher(date);
+        String value = date;
+        if(matcher.matches()) {
+            value = date+" 00:00:00";
+        }
+        setExpirationDate(Timestamp.valueOf(value).getTime());
     }
 
     public String getWhoisResponce() {
