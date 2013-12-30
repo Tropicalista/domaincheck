@@ -47,7 +47,7 @@ public class Domain {
         this.expirationDate = expirationDate;
     }
 
-    public void setExpitationDate(String date) { //format YYYY-MM-DD
+    public void setExpirationDate(String date) { //format YYYY-MM-DD
         Matcher matcher = Pattern.compile("^\\d{4}-{1}\\d{2}-{1}\\d{2}$").matcher(date);
         String value = date;
         if(matcher.matches()) {
