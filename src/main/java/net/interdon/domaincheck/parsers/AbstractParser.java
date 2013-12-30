@@ -22,6 +22,13 @@ public abstract class AbstractParser implements IDomainParser {
         return null;
     }
 
+    public static String getFieldValue(String source, String delimiter) {
+        if(source == null || source.isEmpty()) {
+            return "";
+        }
+        return source.split(delimiter, 2)[1].trim();
+    }
+
     private static String getMatchString(Matcher matcher, String source) {
         return source.substring(matcher.start(), matcher.end());
     }
