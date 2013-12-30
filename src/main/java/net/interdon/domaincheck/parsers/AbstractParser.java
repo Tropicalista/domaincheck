@@ -14,7 +14,7 @@ public abstract class AbstractParser implements IDomainParser {
 
     public abstract void parse(Domain sourceDomain);
 
-    public static String getMatchString(Pattern pattern, String source) {
+    public static String getMatchField(Pattern pattern, String source) {
         Matcher matcher = pattern.matcher(source);
         if(matcher.find()) {
             return getMatchString(matcher, source);
