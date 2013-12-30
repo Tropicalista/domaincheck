@@ -10,22 +10,21 @@ import net.interdon.domaincheck.containers.Domain;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class BasicParser implements IDomainParser {
+public abstract class AbstractParser implements IDomainParser {
     private Pattern expirationDatePattern;
 
-    public BasicParser(String expirationDateRegexp) {
+    public AbstractParser(String expirationDateRegexp) {
         expirationDatePattern = Pattern.compile(expirationDateRegexp);
     }
 
-    public void parse(Domain sourceDomain) {
-        if(sourceDomain.getWhoisResponce().isEmpty()) {
-            return;
-        }
-        Matcher matcher = expirationDatePattern.matcher(sourceDomain.getWhoisResponce());
+    public abstract void parse(Domain sourceDomain);
+
+    public static String getMatchString(Pattern pattern, String source) {
+        Matcher matcher = pattern.matcher(source);
         if(matcher.find()) {
-            String value = getMatchString(matcher, sourceDomain.getWhoisResponce());
-            sourceDomain.setExpitationDate(value.split(":")[1].trim());
+            return getMatchString(matcher, source);
         }
+        return null;
     }
 
     private static String getMatchString(Matcher matcher, String source) {
