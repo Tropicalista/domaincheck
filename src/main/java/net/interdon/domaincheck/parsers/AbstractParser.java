@@ -11,11 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class AbstractParser implements IDomainParser {
-    private Pattern expirationDatePattern;
-
-    public AbstractParser(String expirationDateRegexp) {
-        expirationDatePattern = Pattern.compile(expirationDateRegexp);
-    }
 
     public abstract void parse(Domain sourceDomain);
 
