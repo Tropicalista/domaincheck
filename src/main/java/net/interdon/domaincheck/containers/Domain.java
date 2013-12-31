@@ -10,8 +10,8 @@ import java.util.regex.Pattern;
 
 public class Domain {
     private final String domainName;
-    private String dateCreated = "";
-    private String dateLastModifyed = "";
+    private long dateCreated = 0;
+    private long dateLastModifyed = 0;
     private long expirationDate = 0;
     private String whoisResponce = "";
 
@@ -23,20 +23,28 @@ public class Domain {
         return domainName.split("\\.", 2)[1];
     }
 
-    public String getDateCreated() {
+    public long getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(long dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public String getDateLastModifyed() {
+    public void setDateCreater(String date) {
+        setDateCreated(dateToTimestamp(date));
+    }
+
+    public long getDateLastModifyed() {
         return dateLastModifyed;
     }
 
-    public void setDateLastModifyed(String dateLastModifyed) {
+    public void setDateLastModifyed(long dateLastModifyed) {
         this.dateLastModifyed = dateLastModifyed;
+    }
+
+    public void setDateLastModifyed(String date) {
+        setDateLastModifyed(dateToTimestamp(date));
     }
 
     public long getExpirationDate() {
@@ -48,12 +56,7 @@ public class Domain {
     }
 
     public void setExpirationDate(String date) { //format YYYY-MM-DD
-        Matcher matcher = Pattern.compile("^\\d{4}-{1}\\d{2}-{1}\\d{2}$").matcher(date);
-        String value = date;
-        if(matcher.matches()) {
-            value = date+" 00:00:00";
-        }
-        setExpirationDate(Timestamp.valueOf(value).getTime());
+        setExpirationDate(dateToTimestamp(date));
     }
 
     public String getWhoisResponce() {
@@ -66,5 +69,14 @@ public class Domain {
 
     public String getDomainName() {
         return domainName;
+    }
+
+    private long dateToTimestamp(String date) {
+        Matcher matcher = Pattern.compile("^\\d{4}-{1}\\d{2}-{1}\\d{2}$").matcher(date);
+        String value = date;
+        if(matcher.matches()) {
+            value = date+" 00:00:00";
+        }
+        return Timestamp.valueOf(value).getTime();
     }
 }
