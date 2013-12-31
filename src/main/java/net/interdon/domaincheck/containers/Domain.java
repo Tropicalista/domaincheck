@@ -31,7 +31,7 @@ public class Domain {
         this.dateCreated = dateCreated;
     }
 
-    public void setDateCreater(String date) {
+    public void setDateCreated(String date) {
         setDateCreated(dateToTimestamp(date));
     }
 
