@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class Domain {
     private final String domainName;
     private long dateCreated = 0;
-    private long dateLastModifyed = 0;
+    private long dateLastModified = 0;
     private long expirationDate = 0;
     private String whoisResponce = "";
 
@@ -35,16 +35,16 @@ public class Domain {
         setDateCreated(dateToTimestamp(date));
     }
 
-    public long getDateLastModifyed() {
-        return dateLastModifyed;
+    public long getDateLastModified() {
+        return dateLastModified;
     }
 
-    public void setDateLastModifyed(long dateLastModifyed) {
-        this.dateLastModifyed = dateLastModifyed;
+    public void setDateLastModified(long dateLastModified) {
+        this.dateLastModified = dateLastModified;
     }
 
     public void setDateLastModifyed(String date) {
-        setDateLastModifyed(dateToTimestamp(date));
+        setDateLastModified(dateToTimestamp(date));
     }
 
     public long getExpirationDate() {
