@@ -6,7 +6,9 @@ public class ParserFactory {
             case "org.ua":
                 return new OrgUaParser();
             case "dn.ua":
-                return new OrgUaParser();
+                return new DnUaParser();
+            case "donetsk.ua":
+                return new DnUaParser();
             case "lg.ua":
                 return new OrgUaParser();
             case "com.ua":
