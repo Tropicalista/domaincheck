@@ -13,6 +13,8 @@ public class ParserFactory {
                 return new DnUaParser();
             case "com.ua":
                 return new OrgUaParser();
+            case "net":
+                return new NetParser();
             default:
                 return new DummyParser();
         }
