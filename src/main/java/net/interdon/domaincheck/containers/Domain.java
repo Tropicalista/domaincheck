@@ -72,7 +72,7 @@ public class Domain {
     }
 
     private long dateToTimestamp(String date) {
-        Matcher matcher = Pattern.compile("^\\d{4}-{1}\\d{2}-{1}\\d{2}$").matcher(date);
+        Matcher matcher = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$").matcher(date);
         String value = date;
         if(matcher.matches()) {
             value = date+" 00:00:00";
