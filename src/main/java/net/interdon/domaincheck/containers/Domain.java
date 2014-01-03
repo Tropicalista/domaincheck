@@ -76,7 +76,18 @@ public class Domain {
         String value = date;
         if(matcher.matches()) {
             value = date+" 00:00:00";
+            return Timestamp.valueOf(value).getTime();
         }
-        return Timestamp.valueOf(value).getTime();
+        matcher = Pattern.compile("^\\d{2}-[a-z]{3}-\\d{4}$").matcher(date);
+        if(matcher.matches()) {
+            String[] dateParts = date.split("-");
+            int monthNum = Month.valueOf(dateParts[1].toUpperCase()).ordinal()+1;
+            try {
+                return Timestamp.valueOf(String.format("%s-%s-%s 00:00:00", dateParts[2], monthNum, dateParts[0])).getTime();
+            } catch (IllegalArgumentException e) {
+                return 0;
+            }
+        }
+        return 0;
     }
 }
