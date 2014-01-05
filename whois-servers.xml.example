@@ -3,7 +3,13 @@
 	<tld name="org.ua">
 		<server>whois.com.ua</server>
 	</tld>
+	<tld name="com.ua">
+		<server>whois.com.ua</server>
+	</tld>
 	<tld name="dn.ua">
+		<server>whois.dn.ua</server>
+	</tld>
+	<tld name="donetsk.ua">
 		<server>whois.dn.ua</server>
 	</tld>
 	<tld name="net.ua">
